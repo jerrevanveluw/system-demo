@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>user</artifactId>
+        <groupId>community.flock.demo</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>user-driver</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>community.flock.demo</groupId>
+            <artifactId>user-api</artifactId>
+            <classifier>swagger</classifier>
+            <type>json</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>community.flock.demo</groupId>
+                            <artifactId>user-api</artifactId>
+                            <classifier>swagger</classifier>
+                            <type>json</type>
+                            <version>${project.version}</version>
+                        </artifactItem>
+                    </artifactItems>
+                    <outputDirectory>${project.build.directory}/swagger</outputDirectory>
+                    <overWriteReleases>false</overWriteReleases>
+                    <overWriteSnapshots>true</overWriteSnapshots>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>3.3.4</version>
+                <configuration>
+                    <inputSpec>${project.build.directory}/swagger/user-api-${project.version}-swagger.json</inputSpec>
+                    <generatorName>java</generatorName>
+                    <generateApiTests>false</generateApiTests>
+                    <configOptions>
+                        <dateLibrary>java8</dateLibrary>
+                    </configOptions>
+                    <library>resttemplate</library>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+
+
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

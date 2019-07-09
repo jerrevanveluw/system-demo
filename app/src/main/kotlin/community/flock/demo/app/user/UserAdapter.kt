@@ -1,15 +1,13 @@
 package community.flock.demo.app.user
 
-import community.flock.demo.app.usefull.typeReference
+import org.openapitools.client.api.UserApi
+import org.openapitools.client.model.User
 import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.http.HttpMethod.GET
 import org.springframework.stereotype.Repository
-import org.springframework.web.client.RestTemplate
 
 @Repository
-class UserAdapter(@Qualifier("UserClient") private val client: RestTemplate) {
+class UserAdapter(@Qualifier("UserClient") private val client: UserApi) {
 
-    fun getUsers() = client.exchange("/api", GET, null, typeReference<List<User>>()).body
-            ?: throw RuntimeException("404 user not found")
+    fun getUsers(): List<User> = client.users
 
 }
