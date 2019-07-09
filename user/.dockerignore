@@ -1,0 +1,5 @@
+user-api/
+user-driver/
+user-service/src
+user-service/target
+!user-service/target/*.jar
