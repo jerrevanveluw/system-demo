@@ -1,4 +1,4 @@
-package community.flock.demo.userapi.user.output;
+package community.flock.demo.userapi.user;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,6 +16,6 @@ public interface User {
 
     @Nonnull
     @ApiModelProperty(required = true)
-    Integer getAge();
+    String getBirthday();
 
 }

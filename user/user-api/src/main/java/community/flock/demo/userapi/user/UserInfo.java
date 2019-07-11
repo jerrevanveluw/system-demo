@@ -1,4 +1,4 @@
-package community.flock.demo.userapi.user.input;
+package community.flock.demo.userapi.user;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,19 +7,15 @@ import org.immutables.value.Value;
 import javax.annotation.Nonnull;
 
 @Value.Immutable
-@JsonDeserialize(as = ImmutableBirthday.class)
-public interface Birthday {
+@JsonDeserialize(as = ImmutableUserInfo.class)
+public interface UserInfo {
 
     @Nonnull
     @ApiModelProperty(required = true)
-    Integer getYear();
+    String getName();
 
     @Nonnull
     @ApiModelProperty(required = true)
-    Integer getMonth();
-
-    @Nonnull
-    @ApiModelProperty(required = true)
-    Integer getDay();
+    String getBirthday();
 
 }

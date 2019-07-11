@@ -1,13 +1,12 @@
 package community.flock.demo.userservice.user
 
-import community.flock.demo.userapi.user.input.Birthday
-import community.flock.demo.userapi.user.output.ImmutableUser
+import community.flock.demo.userapi.user.ImmutableUser
 import community.flock.demo.userservice.usefull.Exposable
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
-import java.time.Period
-import community.flock.demo.userapi.user.output.User as ExposedUser
+import community.flock.demo.userapi.user.User as ExposedUser
+import community.flock.demo.userapi.user.UserInfo as PotentialUser
 
 @Table("users")
 data class User(
@@ -17,23 +16,23 @@ data class User(
         val birthday: LocalDate
 ) : Exposable<ExposedUser> {
 
-    constructor(name: String, birthday: Birthday) : this(
-            name = name,
-            birthday = LocalDate.of(birthday.year, birthday.month, birthday.day)
+    constructor(user: PotentialUser) : this(
+            name = user.name,
+            birthday = LocalDate.parse(user.birthday)
     )
 
-    constructor(map: Map<String, Any>) : this(
-            map["id"] as Long,
-            map["name"] as String,
-            map["birthday"] as LocalDate
+    constructor(user: Map<String, Any>) : this(
+            user["id"] as Long,
+            user["name"] as String,
+            user["birthday"] as LocalDate
     )
 
     override fun expose(): ExposedUser = ImmutableUser.builder()
             .name(name)
-            .age(Period.between(birthday, LocalDate.now()).years)
+            .birthday(birthday.toString())
             .build()
 
 }
 
-internal fun Birthday.consume(name: String) = User(name, this)
+internal fun PotentialUser.consume() = User(this)
 internal fun Map<String, Any>.internalize() = User(this)

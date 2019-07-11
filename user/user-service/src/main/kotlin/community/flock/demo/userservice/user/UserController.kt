@@ -1,8 +1,8 @@
 package community.flock.demo.userservice.user
 
+import community.flock.demo.userapi.user.User
 import community.flock.demo.userapi.user.UserApi
-import community.flock.demo.userapi.user.input.Birthday
-import community.flock.demo.userapi.user.output.User
+import community.flock.demo.userapi.user.UserInfo
 import community.flock.demo.userservice.usefull.toResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -19,12 +19,18 @@ import org.springframework.web.bind.annotation.*
 class UserController(private val service: UserService) : UserApi {
 
     @GetMapping
-    override fun getUsers(): ResponseEntity<List<User>> = runBlocking { service.findAll().toList().toResponse() }
+    override fun getUsers(): ResponseEntity<List<User>> = runBlocking {
+        service.findAll().toList().toResponse()
+    }
 
+    @GetMapping("{name}")
+    override fun getUserByName(@PathVariable name: String): ResponseEntity<User> = runBlocking {
+        service.findUserByName(name).toResponse()
+    }
 
-    @PostMapping("{userName}")
-    override fun postUser(@PathVariable userName: String, @RequestBody birthday: Birthday): ResponseEntity<User> = runBlocking {
-        service.save(birthday.consume(userName)).toResponse()
+    @PostMapping
+    override fun postUser(@RequestBody user: UserInfo): ResponseEntity<User> = runBlocking {
+        service.save(user.consume()).toResponse()
     }
 
 }
