@@ -1,8 +1,7 @@
 package community.flock.demo.userservice.user
 
-import community.flock.demo.userapi.user.User
 import community.flock.demo.userapi.user.UserApi
-import community.flock.demo.userapi.user.UserInfo
+import community.flock.demo.userapi.user.output.User
 import community.flock.demo.userservice.usefull.toResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -29,7 +28,7 @@ class UserController(private val service: UserService) : UserApi {
     }
 
     @PostMapping
-    override fun postUser(@RequestBody user: UserInfo): ResponseEntity<User> = runBlocking {
+    override fun postUser(@RequestBody user: community.flock.demo.userapi.user.input.User): ResponseEntity<User> = runBlocking {
         service.save(user.consume()).toResponse()
     }
 

@@ -1,4 +1,4 @@
-package community.flock.demo.userapi.user;
+package community.flock.demo.userapi.user.output;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;

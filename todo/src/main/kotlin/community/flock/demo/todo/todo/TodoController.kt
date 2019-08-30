@@ -14,6 +14,6 @@ import org.springframework.web.bind.annotation.RestController
 class TodoController(private val service: TodoService) {
 
     @GetMapping
-    fun getUsers() = service.findAll().map { it.expose() }
+    fun getTodos() = service.findAll().map { it.expose() }
 
 }

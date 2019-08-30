@@ -1,12 +1,12 @@
 package community.flock.demo.userservice.user
 
-import community.flock.demo.userapi.user.ImmutableUser
+import community.flock.demo.userapi.user.output.ImmutableUser
 import community.flock.demo.userservice.usefull.Exposable
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
-import community.flock.demo.userapi.user.User as ExposedUser
-import community.flock.demo.userapi.user.UserInfo as PotentialUser
+import community.flock.demo.userapi.user.input.User as PotentialUser
+import community.flock.demo.userapi.user.output.User as ExposedUser
 
 @Table("users")
 data class User(

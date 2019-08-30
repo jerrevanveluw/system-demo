@@ -7,16 +7,11 @@ import java.time.format.DateTimeFormatter
 class Todo(
         private val description: String,
         private val due: LocalDateTime
-) : Exposable<Todo.Exposed> {
+) : Exposable<ExposedTodo> {
 
-    override fun expose(): Exposed = Exposed(
+    override fun expose(): ExposedTodo = ExposedTodo(
             description = description,
             due = due.format(dateTimeFormat)
-    )
-
-    class Exposed(
-            val description: String,
-            val due: String
     )
 
     companion object {
@@ -24,3 +19,8 @@ class Todo(
     }
 
 }
+
+class ExposedTodo(
+        val description: String,
+        val due: String
+)

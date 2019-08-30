@@ -12,9 +12,11 @@ import org.springframework.web.client.RestTemplate
 @Repository
 class TodoAdapter(@Qualifier("TodoClient") private val client: RestTemplate) {
 
-    fun getTodos() = TODO.oops { client.get(typeReference<List<Todo>>()) }
+    fun getTodos() = guard { client.get(typeReference<List<Todo>>()) }
 
     private fun <T> RestTemplate.get(type: ParameterizedTypeReference<T>) = exchange("/api", HttpMethod.GET, null, type).body
             ?: throw RuntimeException("404 todo not found")
+
+    private fun <R> guard(block: () -> R) = TODO.oops(block)
 
 }

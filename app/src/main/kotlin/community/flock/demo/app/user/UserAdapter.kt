@@ -9,10 +9,12 @@ import org.springframework.stereotype.Repository
 @Repository
 class UserAdapter(@Qualifier("UserClient") private val client: UserApi) {
 
-    fun getUsers() = USER.oops { client.users }.map { it.internalize() }
+    fun getUsers() = guard { client.users }.map { it.internalize() }
 
-    fun getUserByName(name: String) = USER.oops { client.getUserByName(name) }.internalize()
+    fun getUserByName(name: String) = guard { client.getUserByName(name) }.internalize()
 
-    fun save(user: User) = USER.oops { client.postUser(user.externalize()) }.internalize()
+    fun save(user: User) = guard { client.postUser(user.externalize()) }.internalize()
+
+    private fun <R> guard(block: () -> R) = USER.oops(block)
 
 }

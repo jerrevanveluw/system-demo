@@ -13,6 +13,6 @@ class UserController(private val service: UserService) {
     fun getUserByName(@PathVariable name: String) = service.getUserByName(name).expose()
 
     @PostMapping
-    fun postUser(@RequestBody user: User.Potential) = service.save(user.consume()).expose()
+    fun postUser(@RequestBody user: PotentialUser) = service.save(user.consume()).expose()
 
 }

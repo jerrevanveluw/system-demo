@@ -68,8 +68,6 @@
                         <goals>
                             <goal>generate</goal>
                         </goals>
-
-
                     </execution>
                 </executions>
             </plugin>
