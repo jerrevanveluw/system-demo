@@ -1,6 +1,6 @@
 package community.flock.demo.app.usefull
 
-import community.flock.demo.app.exceptions.AppException
+import community.flock.demo.app.exceptions.InternalServerException
 import community.flock.demo.app.exceptions.TodoNotFoundException
 import community.flock.demo.app.exceptions.UserNotFoundException
 import community.flock.demo.app.usefull.AdapterType.TODO
@@ -15,11 +15,12 @@ fun <R> AdapterType.oops(block: () -> R) = try {
 } catch (e: HttpClientErrorException) {
     when (e.rawStatusCode) {
         404 -> throwNotFoundException()
-        else -> throw AppException("Internal Server Error").also {
-            e.printStackTrace()
-        }
+        else -> throw InternalServerException()
     }
+} catch (e: Exception) {
+    throw InternalServerException()
 }
+
 
 private fun AdapterType.throwNotFoundException(): Nothing = throw when (this) {
     USER -> UserNotFoundException()

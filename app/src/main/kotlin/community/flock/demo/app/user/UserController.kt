@@ -1,5 +1,6 @@
 package community.flock.demo.app.user
 
+import community.flock.demo.app.usefull.toResponse
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -7,12 +8,12 @@ import org.springframework.web.bind.annotation.*
 class UserController(private val service: UserService) {
 
     @GetMapping
-    fun getUsers() = service.getUsers().map { it.expose() }
+    fun getUsers() = service.getUsers().toResponse()
 
     @GetMapping("{name}")
-    fun getUserByName(@PathVariable name: String) = service.getUserByName(name).expose()
+    fun getUserByName(@PathVariable name: String) = service.getUserByName(name).toResponse()
 
     @PostMapping
-    fun postUser(@RequestBody user: PotentialUser) = service.save(user.consume()).expose()
+    fun postUser(@RequestBody user: PotentialUser) = user.consume().let { service.save(it) }.toResponse()
 
 }

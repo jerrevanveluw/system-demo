@@ -13,7 +13,8 @@ class UserAdapter(@Qualifier("UserClient") private val client: UserApi) {
 
     fun getUserByName(name: String) = guard { client.getUserByName(name) }.internalize()
 
-    fun save(user: User) = guard { client.postUser(user.externalize()) }.internalize()
+    fun save(user: User) = guard { user.externalize().let { client.postUser(it) } }.internalize()
+
 
     private fun <R> guard(block: () -> R) = USER.oops(block)
 

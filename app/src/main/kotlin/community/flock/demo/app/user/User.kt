@@ -7,8 +7,7 @@ import java.time.Period
 import org.openapitools.client.model.User as ExternalUser
 import org.openapitools.client.model.UserBody as ExternalisedUser
 
-
-class User(
+data class User(
         private val name: String,
         private val birthday: LocalDate
 ) : Exposable<ExposedUser>, Externalizable<ExternalisedUser> {
@@ -18,34 +17,35 @@ class User(
             birthday = LocalDate.of(user.year, user.month, user.day)
     )
 
-    constructor(user: ExternalUser) : this(
-            name = user.name,
-            birthday = LocalDate.parse(user.birthday)
-    )
-
     override fun expose(): ExposedUser = ExposedUser(
             name = name,
             age = Period.between(birthday, LocalDate.now()).years
     )
 
-    override fun externalize() = ExternalisedUser().also {
+    constructor(user: ExternalUser) : this(
+            name = user.name,
+            birthday = LocalDate.parse(user.birthday)
+    )
+
+    override fun externalize(): ExternalisedUser = ExternalisedUser().also {
         it.name = name
         it.birthday = birthday.toString()
     }
 
 }
 
-class ExposedUser(
-        val name: String,
-        val age: Int
-)
+fun ExternalUser.internalize() = User(this)
 
-class PotentialUser(
+fun PotentialUser.consume() = User(this)
+
+data class PotentialUser(
         val name: String,
         val year: Int,
         val month: Int,
         val day: Int
 )
 
-fun PotentialUser.consume() = User(this)
-fun ExternalUser.internalize() = User(this)
+data class ExposedUser(
+        val name: String,
+        val age: Int
+)

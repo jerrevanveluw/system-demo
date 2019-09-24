@@ -1,3 +1,3 @@
 package community.flock.demo.app.exceptions
 
-class TodoNotFoundException : AppException("To do not found")
+class TodoNotFoundException : NotFoundException("To do")

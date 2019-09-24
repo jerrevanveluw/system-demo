@@ -7,5 +7,5 @@ build:
 .PHONY: build
 
 run:
-	docker-compose up
+	docker-compose up --detach
 .PHONY: run
