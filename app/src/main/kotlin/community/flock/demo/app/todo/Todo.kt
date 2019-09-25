@@ -5,13 +5,15 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class Todo(
-        private val description: String,
-        private val due: LocalDateTime
+        val description: String,
+        val due: String,
+        val userName: String?
 ) : Exposable<ExposedTodo> {
 
     override fun expose(): ExposedTodo = ExposedTodo(
             description = description,
-            due = due.format(dateTimeFormat)
+            due = due,
+            name = userName
     )
 
     companion object {
@@ -22,5 +24,6 @@ class Todo(
 
 class ExposedTodo(
         val description: String,
-        val due: String
+        val due: String,
+        val name: String?
 )

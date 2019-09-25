@@ -8,8 +8,8 @@ import org.openapitools.client.model.User as ExternalUser
 import org.openapitools.client.model.UserBody as ExternalisedUser
 
 data class User(
-        private val name: String,
-        private val birthday: LocalDate
+        val name: String,
+        val birthday: LocalDate
 ) : Exposable<ExposedUser>, Externalizable<ExternalisedUser> {
 
     constructor(user: PotentialUser) : this(

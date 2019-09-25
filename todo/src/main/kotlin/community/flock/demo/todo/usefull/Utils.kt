@@ -1,8 +1,6 @@
-package community.flock.demo.userservice.usefull
+package community.flock.demo.todo.usefull
 
 import org.springframework.http.ResponseEntity
-
-val naturals = generateSequence(0) { it + 1 }.asIterable()
 
 fun <T> Exposable<T>.toResponse(): ResponseEntity<T> = ResponseEntity.ok(expose())
 

@@ -1,14 +1,19 @@
 package community.flock.demo.app.todo
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import community.flock.demo.app.enrichedtodo.EnrichedTodoService
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/todo")
-class TodoController(private val service: TodoService) {
+class TodoController(
+        private val service: TodoService,
+        private val enrichedTodoService: EnrichedTodoService
+) {
 
     @GetMapping
     fun getTodos() = service.getTodos().map { it.expose() }
+
+    @GetMapping("{name}")
+    fun getEnrichedTodosFor(@PathVariable name: String) = enrichedTodoService.getEnrichedTodosFor(name).map { it.expose() }
 
 }

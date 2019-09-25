@@ -11,4 +11,6 @@ class TodoService(private val repository: TodoRepository) {
 
     fun findAll() = repository.findAll()
 
+    suspend fun save(todo: Todo) = repository.save(todo)
+
 }

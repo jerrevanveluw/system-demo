@@ -10,6 +10,7 @@ import kotlinx.coroutines.runBlocking
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import community.flock.demo.userapi.user.input.User as PotentialUser
 
 @FlowPreview
 @RestController
@@ -28,8 +29,8 @@ class UserController(private val service: UserService) : UserApi {
     }
 
     @PostMapping
-    override fun postUser(@RequestBody user: community.flock.demo.userapi.user.input.User): ResponseEntity<User> = runBlocking {
-        service.save(user.consume()).toResponse()
+    override fun postUser(@RequestBody user: PotentialUser): ResponseEntity<User> = runBlocking {
+        user.consume().let { service.save(it) }.toResponse()
     }
 
 }
