@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.immutables.value.Value;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 @Value.Immutable
 @JsonDeserialize(as = ImmutableUser.class)
@@ -19,5 +20,9 @@ public interface User {
     @Nonnull
     @ApiModelProperty(required = true)
     String getBirthday();
+
+    @Nullable
+    @ApiModelProperty
+    String getColor();
 
 }

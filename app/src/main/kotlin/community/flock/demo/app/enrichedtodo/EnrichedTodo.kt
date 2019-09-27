@@ -7,7 +7,7 @@ import community.flock.demo.app.user.User
 import java.time.LocalDate
 import java.time.Period
 
-class EnrichedTodo(
+data class EnrichedTodo(
         private val description: String,
         private val due: LocalDate,
         private val user: User
@@ -23,12 +23,12 @@ class EnrichedTodo(
             description = description,
             due = due.toString(),
             ageWhenDue = Period.between(user.birthday, due).years,
-            responsibleUser = user.expose()
+            responsibleUser = user.expose().copy(favouriteColour = null)
     )
 
 }
 
-internal fun Todo.internalize(user: User) = EnrichedTodo(this, user)
+internal fun Todo.compose(user: User) = EnrichedTodo(this, user)
 
 class ExposedEnrichedTodo(
         val description: String,

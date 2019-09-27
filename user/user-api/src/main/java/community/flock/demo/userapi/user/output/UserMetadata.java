@@ -5,22 +5,13 @@ import io.swagger.annotations.ApiModelProperty;
 import org.immutables.value.Value;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 @Value.Immutable
-@JsonSerialize(as = ImmutableUser.class)
-public interface User {
+@JsonSerialize(as = ImmutableUserMetadata.class)
+public interface UserMetadata {
 
     @Nonnull
     @ApiModelProperty(required = true)
-    String getName();
-
-    @Nonnull
-    @ApiModelProperty(required = true)
-    String getBirthday();
-
-    @Nullable
-    @ApiModelProperty
-    UserMetadata getMetadata();
+    String getColor();
 
 }

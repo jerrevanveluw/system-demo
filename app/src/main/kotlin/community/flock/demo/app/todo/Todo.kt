@@ -4,7 +4,7 @@ import community.flock.demo.app.usefull.Exposable
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class Todo(
+data class Todo(
         val description: String,
         val due: String,
         val userName: String?
@@ -15,10 +15,6 @@ class Todo(
             due = due,
             name = userName
     )
-
-    companion object {
-        val dateTimeFormat: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy 'at' H:mm")
-    }
 
 }
 
