@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 WORKDIR /app
-COPY target/app-*-SNAPSHOT.jar /app
+COPY app-shell/target/app-shell-*-SNAPSHOT.jar /app
 ENV server_port=80
 EXPOSE 80
 
