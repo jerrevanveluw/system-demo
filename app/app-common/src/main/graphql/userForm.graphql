@@ -1,0 +1,6 @@
+type UserForm {
+  name: String!,
+  year: Int!,
+  month: Int!,
+  day: Int!
+}

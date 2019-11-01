@@ -4,6 +4,8 @@ import community.flock.demo.app.common.usefull.Exposable
 import community.flock.demo.app.common.usefull.Externalizable
 import java.time.LocalDate
 import java.time.Period
+import community.flock.demo.app.common.generated.User as ExposedUser
+import community.flock.demo.app.common.generated.UserForm as PotentialUser
 import org.openapitools.client.model.User as ExternalUser
 import org.openapitools.client.model.UserBody as ExternalisedUser
 
@@ -18,7 +20,7 @@ data class User(
             birthday = LocalDate.of(user.year, user.month, user.day)
     )
 
-    override fun expose(): ExposedUser = ExposedUser(
+    override fun expose() = ExposedUser(
             name = name,
             age = Period.between(birthday, LocalDate.now()).years,
             favouriteColour = metadata?.favoriteColour
@@ -40,16 +42,3 @@ data class User(
 fun ExternalUser.internalize() = User(this)
 
 fun PotentialUser.consume() = User(this)
-
-data class PotentialUser(
-        val name: String,
-        val year: Int,
-        val month: Int,
-        val day: Int
-)
-
-data class ExposedUser(
-        val name: String,
-        val age: Int,
-        val favouriteColour: String?
-)

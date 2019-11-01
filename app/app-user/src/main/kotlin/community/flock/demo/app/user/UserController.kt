@@ -2,6 +2,8 @@ package community.flock.demo.app.user
 
 import community.flock.demo.app.common.usefull.toResponse
 import org.springframework.web.bind.annotation.*
+import community.flock.demo.app.common.generated.UserForm as PotentialUser
+
 
 @RestController
 @RequestMapping("/users")

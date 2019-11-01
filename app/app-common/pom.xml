@@ -11,6 +11,13 @@
 
     <artifactId>app-common</artifactId>
 
+    <properties>
+        <graphql-to-rest-maven-plugin.version>0.0.1-SNAPSHOT</graphql-to-rest-maven-plugin.version>
+        <kotlin.source>${project.basedir}/src/main/kotlin</kotlin.source>
+        <graphql.source>${project.basedir}/src/main/graphql</graphql.source>
+        <graphql-to-rest.target>${project.build.directory}/generated-sources/graphql-to-rest</graphql-to-rest.target>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
@@ -31,13 +38,34 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
+            <plugin>
+                <groupId>community.flock</groupId>
+                <artifactId>graphql-to-rest-maven-plugin</artifactId>
+                <version>${graphql-to-rest-maven-plugin.version}</version>
+                <configuration>
+                    <language>All</language>
+                    <packageName>community.flock.demo.app.common.generated</packageName>
+                    <sourceDirectory>${graphql.source}</sourceDirectory>
+                    <targetDirectory>${graphql-to-rest.target}</targetDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <configuration>
+                    <sourceDirs>
+                        <sourceDir>${kotlin.source}</sourceDir>
+                        <sourceDir>${graphql-to-rest.target}</sourceDir>
+                    </sourceDirs>
                     <args>
                         <arg>-Xjsr305=strict</arg>
                     </args>
