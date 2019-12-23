@@ -1,3 +1,5 @@
+export type Listener = ([]) => []
+
 export abstract class Service {
 
   private path: string;
@@ -7,10 +9,9 @@ export abstract class Service {
     this.path = path;
   }
 
-  trigger(): void {
+  protected trigger(): void {
     fetch(`http://localhost:3000/${this.path}`, { method: 'GET' })
       .then(it => it.json())
-      .then(it => it as [])
       .then(log)
       .then(it => this.updateListeners(it));
   }
@@ -28,10 +29,7 @@ export abstract class Service {
 
 }
 
-export type Listener = ([]) => []
-
-
-function log(stuff: []) {
+function log(stuff: any) {
   console.log(`Fetched: ${JSON.stringify(stuff, null, 2)}`);
   return stuff;
 }
