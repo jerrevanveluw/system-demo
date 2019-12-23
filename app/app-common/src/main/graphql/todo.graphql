@@ -1,0 +1,5 @@
+type ToDo  {
+  description: String!
+  due: String!
+  name: String
+}
