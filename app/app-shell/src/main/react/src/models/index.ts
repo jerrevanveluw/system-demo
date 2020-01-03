@@ -1,5 +1,5 @@
-import { User as UserModel } from '../../../../../../app-common/target/generated-sources/graphql-simple-bindings/TypeScript/user';
-import { Todo as TodoModel } from '../../../../../../app-common/target/generated-sources/graphql-simple-bindings/TypeScript/todo';
+import { User as UserModel } from 'graphql-simple-bindings/user';
+import { Todo as TodoModel } from 'graphql-simple-bindings/todo';
 
 export type User = UserModel
 export type Todo = TodoModel

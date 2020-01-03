@@ -12,7 +12,7 @@
     <artifactId>app-common</artifactId>
 
     <properties>
-        <graphql-simple-bindings-maven-plugin.version>0.0.1</graphql-simple-bindings-maven-plugin.version>
+        <graphql-simple-bindings-maven-plugin.version>0.0.2</graphql-simple-bindings-maven-plugin.version>
         <kotlin.source>${project.basedir}/src/main/kotlin</kotlin.source>
         <graphql.source>${project.basedir}/src/main/graphql</graphql.source>
         <graphql-simple-bindings.target>${project.build.directory}/generated-sources/graphql-simple-bindings</graphql-simple-bindings.target>
