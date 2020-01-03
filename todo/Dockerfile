@@ -1,4 +1,4 @@
-FROM openjdk:12-jre-alpine
+FROM openjdk:12-alpine
 WORKDIR /app
 COPY target/todo-*-SNAPSHOT.jar /app
 ENV server_port=8080

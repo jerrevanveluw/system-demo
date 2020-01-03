@@ -11,6 +11,11 @@
 
     <artifactId>app-shell</artifactId>
 
+    <properties>
+        <frontend-path>${project.basedir}/src/main/react</frontend-path>
+        <frontend-build-path>${frontend-path}/build</frontend-build-path>
+    </properties>
+
     <dependencies>
         <!-- modules -->
         <dependency>
@@ -19,11 +24,11 @@
         </dependency>
         <dependency>
             <groupId>community.flock.demo</groupId>
-            <artifactId>app-user</artifactId>
+            <artifactId>app-todo</artifactId>
         </dependency>
         <dependency>
             <groupId>community.flock.demo</groupId>
-            <artifactId>app-todo</artifactId>
+            <artifactId>app-user</artifactId>
         </dependency>
 
         <dependency>
@@ -84,6 +89,26 @@
                         <version>${kotlin.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${maven-antrun-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <target>
+                                <copy todir="${project.build.directory}/classes/static/">
+                                    <fileset dir="${frontend-build-path}" includes="**/*"/>
+                                </copy>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

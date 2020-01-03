@@ -8,8 +8,8 @@ import community.flock.demo.app.user.Configuration as UserConfiguration
 
 @SpringBootApplication
 @Import(value = [
-    UserConfiguration::class,
-    TodoConfiguration::class
+    TodoConfiguration::class,
+    UserConfiguration::class
 ])
 class AppApplication
 

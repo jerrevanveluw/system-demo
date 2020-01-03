@@ -13,8 +13,8 @@ import org.springframework.web.client.RestTemplate
 @ComponentScan(basePackageClasses = [TodoController::class])
 @PropertySource("classpath:todoService.properties")
 class Configuration(
-        @Value("\${service.host}") private val host: String,
-        @Value("\${service.port}") private val port: String
+        @Value("\${service.todo.host}") private val host: String,
+        @Value("\${service.todo.port}") private val port: String
 ) {
 
     @Bean

@@ -5,6 +5,7 @@
 * docker
 * docker-compose
 * (make)
+* (maven)
 
 ### Start
 ```
@@ -18,9 +19,17 @@ docker run --name demo-build --rm -v $(shell pwd):/build -v ~/.m2:/root/.m2 demo
 docker-compose build
 docker-compose up --detach
 ```
+or:
+```
+./build.sh
+docker-compose up --build --detach
+```
 Visit either:
- * http://localhost/users
+ * http://localhost
  * http://localhost/todos
+ * http://localhost/users
+ * http://localhost:8081/api
+ * http://localhost:8082/api
 
 To view the demo
 

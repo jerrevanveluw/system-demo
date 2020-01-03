@@ -12,11 +12,11 @@ import org.springframework.context.annotation.PropertySource
 @ComponentScan(basePackageClasses = [UserController::class])
 @PropertySource("classpath:userService.properties")
 class Configuration(
-        @Value("\${service.host}") private val host: String,
-        @Value("\${service.port}") private val port: String
+        @Value("\${service.user.host}") private val host: String,
+        @Value("\${service.user.port}") private val port: String
 ) {
 
-    @Bean
+    @Bean("UserClient")
     fun userClient(): UserApi = UserApi().apply {
         apiClient.basePath = "http://$host:$port"
     }

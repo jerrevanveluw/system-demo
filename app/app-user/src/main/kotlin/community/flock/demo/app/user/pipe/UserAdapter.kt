@@ -5,10 +5,11 @@ import community.flock.demo.app.common.usefull.oops
 import community.flock.demo.app.user.data.User
 import community.flock.demo.app.user.data.internalize
 import org.openapitools.client.api.UserApi
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Repository
 
 @Repository
-class UserAdapter(private val userClient: UserApi) {
+class UserAdapter(@Qualifier("UserClient") private val userClient: UserApi) {
 
     fun getUsers() = guard { userClient.users }.map { it.internalize() }
 

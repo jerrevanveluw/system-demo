@@ -1,16 +1,12 @@
 export type Listener = ([]) => []
 
-const protocol = 'http';
-const baseUrl = 'localhost';
-const port = '3000';
-
 export abstract class Service {
 
   private url: string;
   private listeners: Listener[] = [];
 
   protected constructor(path: string) {
-    this.url = `${protocol}://${baseUrl}:${port}/${path}`;
+    this.url = `/${path}`;
   }
 
   protected trigger(): void {
