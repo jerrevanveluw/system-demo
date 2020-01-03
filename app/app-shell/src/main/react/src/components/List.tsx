@@ -1,13 +1,10 @@
 import React from 'react';
 import { useToDos, useUsers } from '../hooks/customHooks';
+import { UserLi } from './UserLi';
+import { TodoLi } from './TodoLi';
 
-export const List: React.FC = () => {
-
-  const users = useUsers();
-  const toDos = useToDos();
-
-  return <div>
-    {users.map(it => (<div key={it.name}>{it.age}</div>))}
-    {toDos.map(it => (<div key={it.name}>{it.due}</div>))}
-  </div>;
-};
+export const List: React.FC = () => (<>
+  {useUsers().map(it => <UserLi user={it}/>)}
+  <br/>
+  {useToDos().map(it => <TodoLi todo={it}/>)}
+</>);

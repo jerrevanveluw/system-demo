@@ -1,6 +1,6 @@
 import { Listener, Service } from './AbstractService';
 
-class ToDoService extends Service {
+class TodoService extends Service {
 
   constructor() {
     super('todos');
@@ -14,6 +14,6 @@ class ToDoService extends Service {
 
 }
 
-const toDoServiceInstance = new ToDoService();
+const todoServiceInstance = new TodoService();
 
-export const toDoService = toDoServiceInstance;
+export const todoService = todoServiceInstance;

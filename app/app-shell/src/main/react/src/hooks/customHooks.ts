@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { userService } from '../services/UserService';
 import { Listener } from '../services/AbstractService';
-import { ToDo, User } from '../models';
-import { toDoService } from '../services/ToDoService';
+import { Todo, User } from '../models';
+import { todoService } from '../services/TodoService';
 
 export const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -16,11 +16,11 @@ export const useUsers = () => {
 };
 
 export const useToDos = () => {
-  const [toDos, setToDos] = useState<ToDo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
-    return toDoService.register(setToDos as Listener);
+    return todoService.register(setTodos as Listener);
   }, []);
 
-  return toDos;
+  return todos;
 };

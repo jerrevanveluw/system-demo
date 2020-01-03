@@ -1,18 +1,21 @@
 export type Listener = ([]) => []
 
+const protocol = 'http';
+const baseUrl = 'localhost';
+const port = '3000';
+
 export abstract class Service {
 
-  private path: string;
+  private url: string;
   private listeners: Listener[] = [];
 
   protected constructor(path: string) {
-    this.path = path;
+    this.url = `${protocol}://${baseUrl}:${port}/${path}`;
   }
 
   protected trigger(): void {
-    fetch(`http://localhost:3000/${this.path}`, { method: 'GET' })
+    fetch(this.url, { method: 'GET' })
       .then(it => it.json())
-      .then(log)
       .then(it => this.updateListeners(it));
   }
 
@@ -27,9 +30,4 @@ export abstract class Service {
     this.listeners.forEach(it => it(data));
   }
 
-}
-
-function log(stuff: any) {
-  console.log(`Fetched: ${JSON.stringify(stuff, null, 2)}`);
-  return stuff;
 }
