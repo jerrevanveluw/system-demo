@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>app-shell</artifactId>
+    <artifactId>app-todo</artifactId>
 
     <dependencies>
         <!-- modules -->
@@ -17,19 +17,12 @@
             <groupId>community.flock.demo</groupId>
             <artifactId>app-common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>community.flock.demo</groupId>
-            <artifactId>app-user</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>community.flock.demo</groupId>
-            <artifactId>app-todo</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
@@ -42,30 +35,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>

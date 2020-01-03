@@ -1,4 +1,4 @@
-package community.flock.demo.app.user
+package community.flock.demo.app.user.data
 
 import community.flock.demo.app.common.usefull.Exposable
 import community.flock.demo.app.common.usefull.Externalizable

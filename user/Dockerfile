@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM openjdk:12-jre-alpine
 WORKDIR /app
 COPY user-service/target/user-service-*-SNAPSHOT.jar /app
 ENV server_port=8080

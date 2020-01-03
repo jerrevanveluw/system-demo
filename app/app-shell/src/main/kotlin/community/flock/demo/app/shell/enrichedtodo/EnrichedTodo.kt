@@ -1,8 +1,8 @@
 package community.flock.demo.app.shell.enrichedtodo
 
 import community.flock.demo.app.common.usefull.Exposable
-import community.flock.demo.app.shell.todo.Todo
-import community.flock.demo.app.user.User
+import community.flock.demo.app.user.data.User
+import community.flock.demo.app.todo.data.Todo
 import java.time.LocalDate
 import java.time.Period
 import community.flock.demo.app.common.generated.User as ExposedUser

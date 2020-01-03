@@ -1,22 +1,25 @@
-package community.flock.demo.app.shell.configuration
+package community.flock.demo.app.todo
 
+import community.flock.demo.app.todo.pipe.TodoController
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.PropertySource
 import org.springframework.web.client.RestTemplate
 
 @Configuration
-@PropertySource("classpath:services.properties")
-class Shell(
-        @Value("\${service.todo.host}") private val todoHost: String,
-        @Value("\${service.todo.port}") private val todoPort: String
+@ComponentScan(basePackageClasses = [TodoController::class])
+@PropertySource("classpath:todoService.properties")
+class Configuration(
+        @Value("\${service.host}") private val host: String,
+        @Value("\${service.port}") private val port: String
 ) {
 
-    @Bean("TodoClient")
+    @Bean
     fun todoClient(builder: RestTemplateBuilder): RestTemplate = builder
-            .rootUri("http://$todoHost:$todoPort")
+            .rootUri("http://$host:$port")
             .build()
 
 }

@@ -1,7 +1,7 @@
 version: "3"
 services:
   db-user:
-    image: postgres:11-alpine
+    image: postgres:12-alpine
     ports:
       - "15432:5432"
     restart: always
@@ -11,7 +11,7 @@ services:
     volumes:
       - "./user.sql:/docker-entrypoint-initdb.d/user.sql"
   db-todo:
-    image: postgres:11-alpine
+    image: postgres:12-alpine
     ports:
       - "25432:5432"
     restart: always

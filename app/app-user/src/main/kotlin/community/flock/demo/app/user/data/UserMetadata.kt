@@ -1,4 +1,4 @@
-package community.flock.demo.app.user
+package community.flock.demo.app.user.data
 
 import org.openapitools.client.model.UserMetadata as ExternalUserMetadata
 

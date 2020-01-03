@@ -1,7 +1,7 @@
 package community.flock.demo.app.shell.enrichedtodo
 
-import community.flock.demo.app.shell.todo.TodoService
-import community.flock.demo.app.user.UserService
+import community.flock.demo.app.todo.pipe.TodoService
+import community.flock.demo.app.user.pipe.UserService
 import org.springframework.stereotype.Service
 
 @Service

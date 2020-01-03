@@ -20,6 +20,7 @@
         <module>app-shell</module>
         <module>app-common</module>
         <module>app-user</module>
+        <module>app-todo</module>
     </modules>
 
     <properties>
@@ -46,6 +47,11 @@
             <dependency>
                 <groupId>community.flock.demo</groupId>
                 <artifactId>app-user</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>community.flock.demo</groupId>
+                <artifactId>app-todo</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

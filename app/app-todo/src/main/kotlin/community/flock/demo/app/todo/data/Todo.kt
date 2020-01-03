@@ -1,4 +1,4 @@
-package community.flock.demo.app.shell.todo
+package community.flock.demo.app.todo.data
 
 import community.flock.demo.app.common.usefull.Exposable
 
