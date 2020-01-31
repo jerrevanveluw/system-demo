@@ -1,4 +1,2 @@
-user-api/
-user-driver/
-user-service/
-!user-service/target/*.jar
+**/
+!user-service/target/user-service-*.jar

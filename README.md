@@ -1,11 +1,13 @@
 # System-Demo
 
 ### Dependencies
-* ./.env (with some characters to act as password i.e. POSTGRES_PASSWORD=your_secret_here)
+* `.env` file in the root of this project (with some characters to act as password i.e. POSTGRES_PASSWORD=your_secret_here)
 * docker
 * docker-compose
 * (make)
 * (maven)
+* (jdk 8)
+* (node 12)
 
 ### Start
 ```
@@ -15,7 +17,7 @@ make run
 or:
 ```
 docker build -t demo-build .
-docker run --name demo-build --rm -v $(shell pwd):/build -v ~/.m2:/root/.m2 demo-build
+docker run --name demo-build --rm -v $(pwd):/build -v ~/.m2:/root/.m2 demo-build
 docker-compose build
 docker-compose up --detach
 ```

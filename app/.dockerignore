@@ -1,5 +1,2 @@
-app-common/
-app-shell/
-app-todo/
-app-user/
-!app-shell/target/*.jar
+**/
+!app-shell/target/app-shell-*.jar
