@@ -11,17 +11,21 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "graphql-simple-bindings": "file:../../../../app-common/target/generated-sources/graphql-simple-bindings/TypeScript",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
-    "typescript": "~3.7.2",
-    "graphql-simple-bindings": "file:../../../../app-common/target/generated-sources/graphql-simple-bindings/TypeScript"
+    "rimraf": "^3.0.1",
+    "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "clean:build": "rimraf build",
+    "clean:node": "rimraf node_modules",
+    "clean": "yarn clean:build && yarn clean:node",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -46,5 +50,5 @@
     "printWidth": 180,
     "bracketSpacing": true
   },
-  "proxy": "http://localhost"
+  "proxy": "http://localhost:8080"
 }

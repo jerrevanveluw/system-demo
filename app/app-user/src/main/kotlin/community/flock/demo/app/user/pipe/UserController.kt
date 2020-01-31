@@ -8,22 +8,21 @@ import community.flock.demo.app.common.generated.UserForm as PotentialUser
 
 @RestController
 @RequestMapping("/users")
-class UserController(private val userService: UserService) {
+class UserController(private val service: UserService) {
 
     @GetMapping
-    fun getUsers() = userService.getUsers().toResponse()
+    fun getUsers() = service.getUsers().toResponse()
 
     @GetMapping("europe")
-    fun getUsersFromEU() = userService.getUsersFromEU().toResponse()
+    fun getUsersFromEU() = service.getUsersFromEU().toResponse()
 
     @GetMapping("usa")
-    fun getUsersFromUS() = userService.getUsersFromUS().toResponse()
-
+    fun getUsersFromUS() = service.getUsersFromUS().toResponse()
 
     @GetMapping("{name}")
-    fun getUserByName(@PathVariable name: String) = userService.getUserByName(name).toResponse()
+    fun getUserByName(@PathVariable name: String) = service.getUserByName(name).toResponse()
 
     @PostMapping
-    fun postUser(@RequestBody user: PotentialUser) = user.consume().let { userService.save(it) }.toResponse()
+    fun postUser(@RequestBody user: PotentialUser) = user.consume().let { service.save(it) }.toResponse()
 
 }

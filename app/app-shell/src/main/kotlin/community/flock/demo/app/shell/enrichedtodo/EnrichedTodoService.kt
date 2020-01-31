@@ -10,10 +10,8 @@ class EnrichedTodoService(
         private val userService: UserService
 ) {
 
-    fun getEnrichedTodosFor(userName: String) = userService.getUserByName(userName).let { user ->
-        todoService.getTodos()
-                .filter { it.userName == userName }
-                .map { EnrichedTodo(it, user) }
+    fun getEnrichedTodosFor(userName: String): List<EnrichedTodo> = userService.getUserByName(userName).let { user ->
+        todoService.getTodosFor(userName).map { it.enrichWith(user) }
     }
 
 }

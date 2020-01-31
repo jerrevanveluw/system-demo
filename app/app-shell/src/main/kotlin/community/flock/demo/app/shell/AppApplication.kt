@@ -1,16 +1,13 @@
 package community.flock.demo.app.shell
 
+import community.flock.demo.app.todo.EnableTodoModule
+import community.flock.demo.app.user.EnableUserModule
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.Import
-import community.flock.demo.app.todo.Configuration as TodoConfiguration
-import community.flock.demo.app.user.Configuration as UserConfiguration
 
+@EnableTodoModule
+@EnableUserModule
 @SpringBootApplication
-@Import(value = [
-    TodoConfiguration::class,
-    UserConfiguration::class
-])
 class AppApplication
 
 fun main(args: Array<String>) {

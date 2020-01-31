@@ -1,2 +1,5 @@
-target/
-!target/*.jar
+app-common/
+app-shell/
+app-todo/
+app-user/
+!app-shell/target/*.jar

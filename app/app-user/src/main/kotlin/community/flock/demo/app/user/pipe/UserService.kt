@@ -6,26 +6,27 @@ import java.time.LocalDate
 import java.time.Period
 
 @Service
-class UserService(private val userAdapter: UserAdapter) {
+class UserService(private val adapter: UserAdapter) {
 
-    fun getUsers() = userAdapter.getUsers()
+    fun getUsers() = adapter.getUsers()
 
     fun getUsersFromEU() = getUsers().areOldEnoughToDrink(Region.EU)
 
     fun getUsersFromUS() = getUsers().areOldEnoughToDrink(Region.US)
 
-    fun getUserByName(name: String) = userAdapter.getUserByName(name)
+    fun getUserByName(name: String) = adapter.getUserByName(name)
 
-    fun save(user: User) = userAdapter.save(user)
+    fun save(user: User) = adapter.save(user)
 
+    companion object {
+        private fun List<User>.areOldEnoughToDrink(region: Region) = filter { it.age() > region.age }
 
-    private fun List<User>.areOldEnoughToDrink(region: Region) = filter { it.age() > region.age }
+        private fun User.age() = Period.between(birthday, LocalDate.now()).years
 
-    private fun User.age() = Period.between(birthday, LocalDate.now()).years
-
-    private enum class Region(val age: Int) {
-        US(21),
-        EU(18)
+        private enum class Region(val age: Int) {
+            US(21),
+            EU(18)
+        }
     }
 
 }
