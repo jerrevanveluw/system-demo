@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>community.flock.demo</groupId>
-    <artifactId>todo</artifactId>
+    <artifactId>userdailyfable</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>todo</name>
+    <name>userdailyfable</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

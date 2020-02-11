@@ -4,9 +4,6 @@ import community.flock.demo.todo.usefull.Exposable
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneOffset
-import java.time.format.DateTimeFormatter
 
 @Table("todos")
 class Todo(
