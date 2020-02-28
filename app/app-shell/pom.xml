@@ -12,8 +12,10 @@
     <artifactId>app-shell</artifactId>
 
     <properties>
-        <frontend-path>${project.basedir}/src/main/react</frontend-path>
-        <frontend-build-path>${frontend-path}/build</frontend-build-path>
+        <react-path>${project.basedir}/src/main/react</react-path>
+        <react-build-path>${react-path}/build</react-build-path>
+        <web-components-path>${project.basedir}/src/main/webcomponents</web-components-path>
+        <web-components-build-path>${web-components-path}/dist</web-components-build-path>
     </properties>
 
     <dependencies>
@@ -95,27 +97,65 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>${maven-antrun-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <configuration>
-                            <target>
-                                <copy todir="${project.build.directory}/classes/static/">
-                                    <fileset dir="${frontend-build-path}" includes="**/*"/>
-                                </copy>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
-
+    <profiles>
+        <profile>
+            <id>react</id>
+            <activation>
+                <property>
+                    <name>!wc</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>${maven-antrun-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <target>
+                                        <copy todir="${project.build.directory}/classes/static/">
+                                            <fileset dir="${react-build-path}" includes="**/*"/>
+                                        </copy>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>wc</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>${maven-antrun-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>process-classes</phase>
+                                <configuration>
+                                    <target>
+                                        <copy todir="${project.build.directory}/classes/static/">
+                                            <fileset dir="${web-components-build-path}" includes="**/*"/>
+                                        </copy>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

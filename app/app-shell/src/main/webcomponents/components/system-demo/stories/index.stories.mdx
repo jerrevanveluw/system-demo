@@ -1,0 +1,55 @@
+import { Story, Preview, Meta, Props, html } from '@open-wc/demoing-storybook';
+
+import '../system-demo.js';
+
+<Meta 
+  title="SystemDemo"
+  parameters={{
+    component: "system-demo",
+    options: { selectedPanel: "storybookjs/knobs/panel" }
+  }}
+/>
+
+# SystemDemo
+
+A component for...
+
+## Features:
+
+- a
+- b
+- ...
+
+## How to use
+
+### Installation
+
+```bash
+yarn add system-demo
+```
+
+```js
+import 'system-demo/system-demo.js';
+```
+
+<Preview withToolbar>
+  <Story name="Simple">
+    {html`
+      <system-demo></system-demo>
+    `}
+  </Story>
+</Preview>
+
+## API
+
+<Props of="system-demo" />
+
+## Variations
+
+###### Custom Title
+
+<Story name="Custom Title">
+  {html`
+    <system-demo .title=${'Hello World'}></system-demo>
+  `}
+</Story>

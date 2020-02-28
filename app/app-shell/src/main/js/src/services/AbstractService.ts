@@ -1,4 +1,4 @@
-export type Listener = ([]) => [];
+import { Listener } from '../models';
 
 export abstract class Service {
   private url: string;

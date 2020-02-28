@@ -1,4 +1,5 @@
-import { Listener, Service } from './AbstractService';
+import { Service } from './AbstractService';
+import { Listener } from '../models';
 
 class UserService extends Service {
   constructor() {

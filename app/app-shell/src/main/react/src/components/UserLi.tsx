@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '../models';
+import { User } from 'graphql-simple-bindings/user';
 
 type UserLiProps = {
   user: User;

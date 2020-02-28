@@ -1,0 +1,30 @@
+{
+  "name": "plumbing",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "dependencies": {
+    "@rollup/plugin-typescript": "^3.0.0",
+    "graphql-simple-bindings": "file:../../../../app-common/target/generated-sources/graphql-simple-bindings/TypeScript",
+    "rimraf": "^3.0.2",
+    "rollup": "^1.31.1",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all",
+    "semi": true,
+    "printWidth": 180,
+    "bracketSpacing": true
+  },
+  "scripts": {
+    "clean:build": "rimraf dist",
+    "clean:node": "rimraf node_modules",
+    "clean": "yarn clean:build && yarn clean:node",
+    "build": "rollup -c && tsc"
+  },
+  "typings": "dist/index.d.ts",
+  "typescript": {
+    "definition": "dist/index.d.ts"
+  }
+}

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { userService } from '../services/UserService';
-import { Listener } from '../services/AbstractService';
-import { Todo, User } from '../models';
-import { todoService } from '../services/TodoService';
+import { Listener, todoService, userService } from '../services';
+import { Todo } from '../models';
+import { User } from '../models';
 
 export const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -12,7 +11,6 @@ export const useUsers = () => {
   }, []);
 
   return users;
-
 };
 
 export const useToDos = () => {
