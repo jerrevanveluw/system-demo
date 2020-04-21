@@ -7,7 +7,3 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get update && apt-get install -y yarn
 
 WORKDIR /build
-
-COPY build.sh /build
-
-ENTRYPOINT ["/build/build.sh"]
