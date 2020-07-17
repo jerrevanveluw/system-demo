@@ -8,4 +8,4 @@ cd "${WORK_DIR}"/todo && mvn clean install && \
 cd "${WORK_DIR}"/app/app-common && mvn clean install && \
 cd "${WORK_DIR}"/app/app-shell/src/main/react && yarn && yarn build && \
 cd "${WORK_DIR}"/app/app-shell/src/main/webcomponents && npm i && npm run build && \
-cd "${WORK_DIR}"/app && mvn clean install -Pwc
+cd "${WORK_DIR}"/app && mvn clean install

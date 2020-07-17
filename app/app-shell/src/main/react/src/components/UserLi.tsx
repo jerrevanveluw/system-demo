@@ -7,6 +7,6 @@ type UserLiProps = {
 
 export const UserLi = ({ user }: UserLiProps) => (
   <div key={user.name}>
-    {user.name} is {user.age}
+    {user.name} is {user.age} (fav col: {user.favouriteColour})
   </div>
 );
