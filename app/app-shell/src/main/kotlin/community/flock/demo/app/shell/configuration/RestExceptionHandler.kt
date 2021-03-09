@@ -1,8 +1,12 @@
 package community.flock.demo.app.shell.configuration
 
-import community.flock.demo.app.common.exceptions.TodoNotFoundException
-import community.flock.demo.app.common.exceptions.UserNotFoundException
+import community.flock.demo.app.common.exceptions.AppException
+import community.flock.demo.app.common.exceptions.InternalServerException
+import community.flock.demo.app.common.exceptions.NotFoundException
+import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.NOT_FOUND
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -11,12 +15,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 class RestExceptionHandler : ResponseEntityExceptionHandler() {
 
-    @ExceptionHandler(UserNotFoundException::class)
-    private fun handleUserNotFoundException(e: UserNotFoundException) = notFound(e.message)
+    @ExceptionHandler(NotFoundException::class)
+    fun handleNotFoundException(e: NotFoundException) = e.toResponse(NOT_FOUND)
 
-    @ExceptionHandler(TodoNotFoundException::class)
-    private fun handleTodoNotFoundException(e: TodoNotFoundException) = notFound(e.message)
+    @ExceptionHandler(InternalServerException::class)
+    fun handleAppException(e: InternalServerException) = e.toResponse(HttpStatus.INTERNAL_SERVER_ERROR)
 
-    private fun notFound(msg: String?) = ResponseEntity(msg, NOT_FOUND)
+    private fun AppException.toResponse(status: HttpStatus) = ResponseEntity(message!!, headers, status)
+        .also { printStackTrace() }
+
+    private val headers = HttpHeaders().apply {
+        contentType = MediaType.APPLICATION_JSON
+        cacheControl = "private, max-age=0, no-cache, no-store"
+    }
 
 }

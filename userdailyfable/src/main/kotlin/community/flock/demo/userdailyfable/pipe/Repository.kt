@@ -17,11 +17,11 @@ class Repository(private val client: DatabaseClient) {
     fun findAll(): Flow<User> = client.select().from("users").asType<User>().fetch().flow()
 
     suspend fun findUserByName(name: String) = client.execute()
-            .sql("SELECT * FROM users WHERE name = :name")
-            .bind("name", name)
-            .asType<User>()
-            .fetch()
-            .awaitOneOrNull() ?: throw UserNotFoundException(name)
+        .sql("SELECT * FROM users WHERE name = :name")
+        .bind("name", name)
+        .asType<User>()
+        .fetch()
+        .awaitOneOrNull() ?: throw UserNotFoundException(name)
 
     suspend fun save(user: User): User = client.insert().into<User>().using(user).fetch().awaitOne().internalize()
 

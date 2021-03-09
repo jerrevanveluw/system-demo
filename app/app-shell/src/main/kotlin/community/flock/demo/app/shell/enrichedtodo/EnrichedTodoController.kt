@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 class EnrichedTodoController(private val enrichedTodoService: EnrichedTodoService) {
 
     @GetMapping
-    fun getEnrichedTodosFor(@PathVariable name: String) = enrichedTodoService.getEnrichedTodosFor(name.capitalize()).map { it.expose() }
+    fun getEnrichedTodosFor(@PathVariable name: String) =
+        enrichedTodoService.getEnrichedTodosFor(name.capitalize()).map { it.expose() }
 
 }

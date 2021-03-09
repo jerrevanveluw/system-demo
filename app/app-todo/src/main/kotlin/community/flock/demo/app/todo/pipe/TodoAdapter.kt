@@ -13,7 +13,8 @@ class TodoAdapter(private val client: TodoClient) {
 
     internal fun getTodos() = guard { client.get(typeReference<List<Todo>>()) }
 
-    private fun <T> TodoClient.get(type: ParameterizedTypeReference<T>) = exchange("/api", HttpMethod.GET, null, type).body
+    private fun <T> TodoClient.get(type: ParameterizedTypeReference<T>) =
+        exchange("/api", HttpMethod.GET, null, type).body
             ?: throw RuntimeException("404 todo not found")
 
     private fun <R> guard(block: () -> R) = AdapterType.TODO.oops(block)

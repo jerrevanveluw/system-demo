@@ -45,6 +45,8 @@ services:
       - "SERVICE_TODO_PORT=8080"
       - "SERVICE_USER_HOST=user-sesamestreet"
       - "SERVICE_USER_PORT=8080"
+      - "SERVICE_DFUSER_HOST=user-dailyfable"
+      - "SERVICE_DFUSER_PORT=8080"
   todo:
     build:
       context: ./todo

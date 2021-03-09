@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class EnrichedTodoService(
-        private val todoService: TodoService,
-        private val userService: UserService
+    private val todoService: TodoService,
+    private val userService: UserService
 ) {
 
     fun getEnrichedTodosFor(userName: String): List<EnrichedTodo> = userService.getUserByName(userName).let { user ->

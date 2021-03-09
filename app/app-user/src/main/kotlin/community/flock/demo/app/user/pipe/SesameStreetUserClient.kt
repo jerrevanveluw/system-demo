@@ -5,7 +5,7 @@ import org.springframework.core.env.Environment
 import org.springframework.stereotype.Component
 
 @Component
-class UserClient(env: Environment) : UserApi() {
+class SesameStreetUserClient(env: Environment) : UserApi() {
 
     init {
         val host: String = env.getRequiredProperty("service.user.host")

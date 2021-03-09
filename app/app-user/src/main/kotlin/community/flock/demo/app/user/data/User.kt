@@ -10,26 +10,32 @@ import org.openapitools.client.model.User as ExternalUser
 import org.openapitools.client.model.UserBody as ExternalisedUser
 
 data class User(
-        val name: String,
-        val birthday: LocalDate,
-        val metadata: UserMetadata? = null
+    val name: String,
+    val birthday: LocalDate,
+    val metadata: UserMetadata? = null
 ) : Exposable<ExposedUser>, Externalizable<ExternalisedUser> {
 
     constructor(user: PotentialUser) : this(
-            name = user.name,
-            birthday = LocalDate.of(user.year, user.month, user.day)
+        name = user.name,
+        birthday = LocalDate.of(user.year, user.month, user.day)
     )
 
     override fun expose() = ExposedUser(
-            name = name,
-            age = Period.between(birthday, LocalDate.now()).years,
-            favouriteColour = metadata?.favoriteColour
+        name = name,
+        age = Period.between(birthday, LocalDate.now()).years,
+        favouriteColour = metadata?.favoriteColour
     )
 
     constructor(user: ExternalUser) : this(
-            name = user.name,
-            birthday = LocalDate.parse(user.birthday),
-            metadata = user.metadata.internalize()
+        name = user.name,
+        birthday = LocalDate.parse(user.birthday),
+        metadata = user.metadata.internalize()
+    )
+
+    constructor(user: ExternalDailyFableUser) : this(
+        name = user.name,
+        birthday = LocalDate.parse(user.birthday),
+        metadata = user.color.internalize()
     )
 
     override fun externalize(): ExternalisedUser = ExternalisedUser().also {
@@ -41,4 +47,12 @@ data class User(
 
 fun ExternalUser.internalize() = User(this)
 
+fun ExternalDailyFableUser.internalize() = User(this)
+
 fun PotentialUser.consume() = User(this)
+
+data class ExternalDailyFableUser(
+    val name: String,
+    val birthday: String,
+    val color: String?
+)
