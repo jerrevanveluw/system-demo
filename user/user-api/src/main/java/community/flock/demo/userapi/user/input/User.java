@@ -13,16 +13,13 @@ import javax.annotation.Nullable;
 @ApiModel("UserBody")
 public interface User {
 
-    @Nonnull
     @ApiModelProperty(required = true)
     String getName();
 
-    @Nonnull
     @ApiModelProperty(required = true)
     String getBirthday();
 
     @Nullable
-    @ApiModelProperty
     String getColor();
 
 }

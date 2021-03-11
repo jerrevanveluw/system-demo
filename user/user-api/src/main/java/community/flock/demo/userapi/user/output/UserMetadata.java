@@ -10,7 +10,6 @@ import javax.annotation.Nonnull;
 @JsonSerialize(as = ImmutableUserMetadata.class)
 public interface UserMetadata {
 
-    @Nonnull
     @ApiModelProperty(required = true)
     String getColor();
 

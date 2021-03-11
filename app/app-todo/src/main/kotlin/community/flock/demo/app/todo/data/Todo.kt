@@ -1,6 +1,7 @@
 package community.flock.demo.app.todo.data
 
 import community.flock.demo.app.common.usefull.Exposable
+import community.flock.demo.app.common.generated.Todo as ExposedTodo
 
 data class Todo(
     val description: String,
@@ -15,9 +16,3 @@ data class Todo(
     )
 
 }
-
-class ExposedTodo(
-    val description: String,
-    val due: String,
-    val name: String?
-)

@@ -11,16 +11,13 @@ import javax.annotation.Nullable;
 @JsonSerialize(as = ImmutableUser.class)
 public interface User {
 
-    @Nonnull
     @ApiModelProperty(required = true)
     String getName();
 
-    @Nonnull
     @ApiModelProperty(required = true)
     String getBirthday();
 
     @Nullable
-    @ApiModelProperty
     UserMetadata getMetadata();
 
 }
