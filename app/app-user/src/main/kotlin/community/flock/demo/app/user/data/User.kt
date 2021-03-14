@@ -38,9 +38,9 @@ data class User(
         metadata = user.color.internalize()
     )
 
-    override fun externalize(): ExternalisedUser = ExternalisedUser().also {
-        it.name = name
-        it.birthday = birthday.toString()
+    override fun externalize(): ExternalisedUser = ExternalisedUser().apply {
+        name = name
+        birthday = birthday.toString()
     }
 
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Todo } from 'graphql-simple-bindings/todo';
+import { Todo } from './todo.model';
 
 type ToDoLiProps = {
   todo: Todo;
