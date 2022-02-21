@@ -1,29 +1,33 @@
 package community.flock.demo.userapi.user;
 
 import community.flock.demo.userapi.user.output.User;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import io.swagger.annotations.*;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Api("User")
-@RequestMapping(value = "/api", produces = APPLICATION_JSON_VALUE)
+@Path(value = "/api")
+@Produces(MediaType.APPLICATION_JSON)
 public interface UserApi {
 
     @ApiOperation("Get users")
-    @GetMapping
-    ResponseEntity<List<User>> getUsers();
+    @GET
+    List<User> getUsers();
 
     @ApiOperation("Get user by name")
-    @GetMapping("{name}")
-    ResponseEntity<User> getUserByName(@PathVariable String name);
+    @GET
+    @Path("{name}")
+    User getUserByName(@PathParam("name") String name);
 
     @ApiOperation("Post a new user with name, and age in years")
-    @PostMapping
-    ResponseEntity<User> postUser(@RequestBody community.flock.demo.userapi.user.input.User user);
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @ApiImplicitParams(value = {
+            @ApiImplicitParam(name = "user", dataTypeClass = community.flock.demo.userapi.user.input.User.class, required = true),
+    })
+    User postUser( community.flock.demo.userapi.user.input.User user);
 
 }

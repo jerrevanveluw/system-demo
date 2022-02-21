@@ -18,6 +18,10 @@
             <classifier>swagger</classifier>
             <type>json</type>
         </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

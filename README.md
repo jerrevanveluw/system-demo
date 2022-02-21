@@ -3,10 +3,10 @@
 ### Dependencies
 * `.env` file in the root of this project (with some characters to act as password i.e. POSTGRES_PASSWORD=your_secret_here)
 * docker
-* docker-compose
+* docker compose
 * (make)
 * (maven)
-* (jdk 8)
+* (jdk 11)
 * (node 12)
 
 ### Start
@@ -18,13 +18,13 @@ or:
 ```
 docker build -t demo-build .
 docker run --name demo-build --rm -v $(pwd):/build -v ~/.m2:/root/.m2 demo-build
-docker-compose build
-docker-compose up --detach
+docker compose build
+docker compose up --detach
 ```
 or:
 ```
 ./build.sh
-docker-compose up --build --detach
+docker compose up --build --detach
 ```
 Visit either:
  * http://localhost
@@ -41,5 +41,5 @@ make destroy
 ```
 or:
 ```
-docker-compose down && docker rmi demo-build
+docker compose down && docker rmi demo-build
 ```
