@@ -1,11 +1,11 @@
 package community.flock.demo.userdailyfable.data
 
-import community.flock.demo.userdailyfable.common.Exposable
-import community.flock.demo.userdailyfable.data.ExposedUser
+import community.flock.demo.userdailyfable.common.Producible
+import community.flock.demo.userdailyfable.data.ProducedUser
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
-import community.flock.demo.userdailyfable.data.ExposedUser as PotentialUser
+import community.flock.demo.userdailyfable.data.ProducedUser as PotentialUser
 
 @Table("users")
 class User(
@@ -14,7 +14,7 @@ class User(
     val name: String,
     val birthday: LocalDate,
     val color: String = DEFAULT_COLOR
-) : Exposable<ExposedUser> {
+) : Producible<ProducedUser> {
 
     constructor(user: PotentialUser) : this(
         name = user.name,
@@ -29,7 +29,7 @@ class User(
         user["color"] as String
     )
 
-    override fun expose(): ExposedUser = ExposedUser(
+    override fun produce(): ProducedUser = ProducedUser(
         name = name,
         birthday = birthday.toString(),
         color = color
@@ -44,7 +44,7 @@ class User(
 internal fun Map<String, Any>.internalize() = User(this)
 internal fun PotentialUser.consume() = User(this)
 
-data class ExposedUser(
+data class ProducedUser(
     val name: String,
     val birthday: String,
     val color: String?

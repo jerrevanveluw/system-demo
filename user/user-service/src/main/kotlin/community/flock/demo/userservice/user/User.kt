@@ -2,12 +2,12 @@ package community.flock.demo.userservice.user
 
 import community.flock.demo.userapi.user.output.ImmutableUser
 import community.flock.demo.userapi.user.output.ImmutableUserMetadata
-import community.flock.demo.userservice.usefull.Exposable
+import community.flock.demo.userservice.usefull.Producible
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
 import community.flock.demo.userapi.user.input.User as PotentialUser
-import community.flock.demo.userapi.user.output.User as ExposedUser
+import community.flock.demo.userapi.user.output.User as ProducedUser
 
 @Table("users")
 data class User(
@@ -16,7 +16,7 @@ data class User(
     val name: String,
     val birthday: LocalDate,
     val color: String = DEFAULT_COLOR
-) : Exposable<ExposedUser> {
+) : Producible<ProducedUser> {
 
     constructor(user: PotentialUser) : this(
         name = user.name,
@@ -31,7 +31,7 @@ data class User(
         user["color"] as String
     )
 
-    override fun expose(): ExposedUser = ImmutableUser.builder()
+    override fun produce(): ProducedUser = ImmutableUser.builder()
         .name(name)
         .birthday(birthday.toString())
         .metadata(ImmutableUserMetadata.builder().color(color).build())

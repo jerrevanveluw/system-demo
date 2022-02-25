@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModelProperty;
 import org.immutables.value.Value;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 @Value.Immutable

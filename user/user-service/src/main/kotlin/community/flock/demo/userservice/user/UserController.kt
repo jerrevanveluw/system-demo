@@ -5,12 +5,19 @@ import community.flock.demo.userapi.user.output.User
 import community.flock.demo.userservice.usefull.toResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.ProducerScope
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.reactive.flow.asPublisher
 import kotlinx.coroutines.runBlocking
 import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
+import reactor.core.publisher.toFlux
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.EmptyCoroutineContext
 import community.flock.demo.userapi.user.input.User as PotentialUser
+
 
 @FlowPreview
 @RestController

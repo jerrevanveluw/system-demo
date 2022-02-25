@@ -1,7 +1,7 @@
 package community.flock.demo.userdailyfable.common
 
-interface Exposable<T> {
+interface Producible<T> {
 
-    fun expose(): T
+    fun produce(): T
 
 }

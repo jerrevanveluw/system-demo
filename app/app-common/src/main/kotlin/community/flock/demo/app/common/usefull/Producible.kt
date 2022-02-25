@@ -1,7 +1,7 @@
 package community.flock.demo.app.common.usefull
 
-interface Exposable<T> {
+interface Producible<T> {
 
-    fun expose(): T
+    fun produce(): T
 
 }

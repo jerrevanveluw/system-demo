@@ -5,7 +5,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.map
 import org.springframework.web.bind.annotation.*
-import community.flock.demo.userdailyfable.data.ExposedUser as PotentialUser
+import community.flock.demo.userdailyfable.data.ProducedUser as PotentialUser
 
 @FlowPreview
 @RestController
@@ -14,7 +14,7 @@ import community.flock.demo.userdailyfable.data.ExposedUser as PotentialUser
 class Controller(private val service: Service) {
 
     @GetMapping
-    fun getAll() = service.findAll().map { it.expose() }
+    fun getAll() = service.findAll().map { it.produce() }
 
     @GetMapping("{name}")
     suspend fun getUserByName(@PathVariable name: String) = service.findUserByName(name)

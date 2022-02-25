@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 class TodoController(private val service: TodoService) {
 
     @GetMapping
-    fun getTodos() = service.findAll().map { it.expose() }
+    fun getTodos() = service.findAll().map { it.produce() }
 
     @PostMapping
     fun postTodo(@RequestBody todo: PotentialTodo) = runBlocking {

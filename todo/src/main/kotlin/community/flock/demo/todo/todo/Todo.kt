@@ -1,6 +1,6 @@
 package community.flock.demo.todo.todo
 
-import community.flock.demo.todo.usefull.Exposable
+import community.flock.demo.todo.usefull.Producible
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDate
@@ -14,7 +14,7 @@ class Todo(
     private val due: LocalDate,
     private val userName: String?
 
-) : Exposable<ExposedTodo> {
+) : Producible<ProducedTodo> {
 
     constructor(todo: PotentialTodo) : this(
         description = todo.description,
@@ -29,7 +29,7 @@ class Todo(
         userName = todo["user_name"] as String?
     )
 
-    override fun expose(): ExposedTodo = ExposedTodo(
+    override fun produce(): ProducedTodo = ProducedTodo(
         description = description,
         due = due.toString(),
         userName = userName
@@ -47,7 +47,7 @@ data class PotentialTodo(
     internal fun consume() = Todo(this)
 }
 
-data class ExposedTodo(
+data class ProducedTodo(
     val description: String,
     val due: String,
     val userName: String?

@@ -11,6 +11,6 @@ class EnrichedTodoController(private val enrichedTodoService: EnrichedTodoServic
 
     @GetMapping
     fun getEnrichedTodosFor(@PathVariable name: String) =
-        enrichedTodoService.getEnrichedTodosFor(name.capitalize()).map { it.expose() }
+        enrichedTodoService.getEnrichedTodosFor(name.capitalize()).map { it.produce() }
 
 }
